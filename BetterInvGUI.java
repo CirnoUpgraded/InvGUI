@@ -35,6 +35,8 @@ public class BetterInvGUI {
     }
 
     public InvGUI create(String name,int hight,int width){
+        this.hight = hight;
+        this.width = width;
         inv = Bukkit.createInventory( null ,hight * width ,name );
         return this;
     }
