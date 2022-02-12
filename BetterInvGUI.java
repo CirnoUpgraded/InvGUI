@@ -8,7 +8,7 @@ import java.util.*;
 
 public class BetterInvGUI {
 
-    public InvGUI(){
+    public BetterInvGUI(){
 
     }
     
@@ -29,19 +29,19 @@ public class BetterInvGUI {
     private int hight;
     private int width;
     
-    public InvGUI create(Inventory from){
+    public BetterInvGUI create(Inventory from){
         inv = from;
         return this;
     }
 
-    public InvGUI create(String name,int hight,int width){
+    public BetterInvGUI create(String name,int hight,int width){
         this.hight = hight;
         this.width = width;
         inv = Bukkit.createInventory( null ,hight * width ,name );
         return this;
     }
 
-    public InvGUI create(String name,int size){
+    public BetterInvGUI create(String name,int size){
         inv = Bukkit.createInventory( null ,size ,name );
         return this;
     }
@@ -50,24 +50,24 @@ public class BetterInvGUI {
         LARGE,NORMAL
     }
 
-    public InvGUI create(String name,ChestType c){
+    public BetterInvGUI create(String name,ChestType c){
         return create( name ,( c == ChestType.LARGE ? 6 : 3 ) * 9 );
     }
 
-    public InvGUI setName(String name){
+    public BetterInvGUI setName(String name){
         Inventory inv = new InvGUI().create( name , getSlotLength() + 1 ).getInventory();
         inv.setContents( this.inv.getContents() );
         this.inv = inv;
         return this;
     }
 
-    public InvGUI setHight(int hight){
+    public BetterInvGUI setHight(int hight){
         this.hight = hight;
         inv.setMaxStackSize( hight * width );
         return this;
     }
 
-    public InvGUI setWidth(int width){
+    public BetterInvGUI setWidth(int width){
         this.width = width;
         inv.setMaxStackSize( hight * width );
         return this;
@@ -85,7 +85,7 @@ public class BetterInvGUI {
         return new int[]{getHight(),getWidth()};
     }
 
-    public InvGUI addItem(String name,ItemStack stack,int index){
+    public BetterInvGUI addItem(String name,ItemStack stack,int index){
         ItemMeta meta = stack.getItemMeta();
         meta.setDisplayName(name);
         stack.setItemMeta(meta);
@@ -93,11 +93,11 @@ public class BetterInvGUI {
         return this;
     }
 
-    public InvGUI addItem(String name,Material material,int index){
+    public BetterInvGUI addItem(String name,Material material,int index){
         return addItem( name , new ItemStack( material ) , index );
     }
 
-    public InvGUI addItem(String name,ItemStack stack,List list,int index){
+    public BetterInvGUI addItem(String name,ItemStack stack,List list,int index){
         ItemMeta meta = stack.getItemMeta();
         meta.setDisplayName(name);
         meta.setLore(list);
@@ -106,16 +106,16 @@ public class BetterInvGUI {
         return this;
     }
 
-    public InvGUI addItem(String name,Material material,List list,int index){
+    public BetterInvGUI addItem(String name,Material material,List list,int index){
         return addItem( name , new ItemStack( material ) , list, index );
     }
     
-    public InvGUI addItem(ItemStack stack,int index){
+    public BetterInvGUI addItem(ItemStack stack,int index){
         inv.setItem( index , stack );
         return this;
     }
 
-    public InvGUI addItem(Material material,int index){
+    public BetterInvGUI addItem(Material material,int index){
         return addItem( new ItemStack( material ) , index );
     }
     
